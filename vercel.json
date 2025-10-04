@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install && npm run db:generate",
+  "framework": "nextjs",
+  "env": {
+    "NODE_ENV": "production",
+    "PUPPETEER_HEADLESS": "true",
+    "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD": "true"
+  },
+  "regions": ["sin1"]
+}
