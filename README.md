@@ -1,141 +1,264 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# 📱 WhatsApp Bot Dashboard
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+A complete, ready-to-run WhatsApp automation solution that uses Puppeteer for WhatsApp Web control, real-time communication via Socket.io, and a modern React dashboard.
 
-## ✨ Technology Stack
+## ⚠️ Important Notice
 
-This scaffold provides a robust foundation built with:
+This solution uses Puppeteer to control a Chromium instance and access WhatsApp Web. This method **bypasses** the official WhatsApp Business API and may violate WhatsApp's Terms of Service. Use strictly for personal, development, and prototyping purposes only.
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+## ✨ Features
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+- 🤖 **WhatsApp Automation** - Control WhatsApp Web via Puppeteer
+- 📱 **Real-time Dashboard** - Modern React interface with shadcn/ui components
+- 🔄 **Live Communication** - Socket.io for real-time message handling
+- 💾 **Message Persistence** - SQLite database with Prisma ORM
+- 📸 **Screenshot Monitoring** - View bot status in real-time
+- 📱 **PWA Support** - Install as mobile app on your device
+- 🌐 **Mobile Deep Links** - Open messages directly in WhatsApp mobile app
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+## 🛠 Technology Stack
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+### Core Framework
+- **⚡ Next.js 15** - React framework with App Router
+- **📘 TypeScript 5** - Type-safe development
+- **🎨 Tailwind CSS 4** - Modern styling
+- **🧩 shadcn/ui** - High-quality UI components
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+### WhatsApp Automation
+- **🎭 Puppeteer** - Browser automation for WhatsApp Web
+- **🔄 Socket.io** - Real-time bidirectional communication
+- **🗄️ Prisma + SQLite** - Lightweight database persistence
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
-
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
-
-## 🎯 Why This Scaffold?
-
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+### Progressive Web App
+- **📱 PWA Manifest** - Installable mobile app
+- **🔧 Service Worker** - Offline support and caching
+- **🎯 Mobile-First** - Responsive design for all devices
 
 ## 🚀 Quick Start
 
+### 1. Installation
+
 ```bash
+# Clone the repository
+git clone <repository-url>
+cd whatsapp-bot-dashboard
+
 # Install dependencies
 npm install
 
+# Set up environment
+cp .env.example .env
+```
+
+### 2. Environment Configuration
+
+Edit `.env` file with your settings:
+
+```env
+# Database
+DATABASE_URL=file:./db/data.db
+
+# WhatsApp Bot Configuration
+PUPPETEER_HEADLESS=false
+PUPPETEER_USER_DATA=./session_data
+
+# Server Configuration
+NODE_ENV=development
+PORT=3000
+```
+
+### 3. Database Setup
+
+```bash
+# Push database schema
+npm run db:push
+```
+
+### 4. Start the Application
+
+```bash
 # Start development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+The server will:
+1. Launch the Next.js application on http://localhost:3000
+2. Initialize Puppeteer and open WhatsApp Web
+3. Show QR code for first-time setup (scan with your phone)
 
-## 🤖 Powered by Z.ai
+### 5. First-Time Setup
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+1. Open http://localhost:3000 in your browser
+2. Look for the Chromium window that opened automatically
+3. Scan the QR code with your phone's WhatsApp
+4. Wait for WhatsApp Web to load
+5. The dashboard will show "Bot Ready" status
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
+## 📱 Usage
 
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+### Sending Messages
 
-## 📁 Project Structure
+1. Enter a phone number (with country code, e.g., 60123456789)
+2. Type your message
+3. Click "Send Message" or use the "Open WhatsApp" button
+
+### Monitoring
+
+- **Message Logs**: View all incoming/outgoing messages in real-time
+- **Screenshot**: Take a screenshot of the current WhatsApp Web view
+- **Status**: Check if the bot is properly initialized
+
+### Mobile Features
+
+- Install the dashboard as a PWA on your mobile device
+- Use deep links to open messages directly in WhatsApp mobile app
+- Responsive design works perfectly on all screen sizes
+
+## 🏗 Project Structure
 
 ```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── api/               # API routes
+│   │   │   ├── messages/      # Message history API
+│   │   │   └── bot/           # Bot status API
+│   │   ├── layout.tsx         # Root layout with PWA support
+│   │   └── page.tsx           # Main dashboard
+│   ├── components/ui/         # shadcn/ui components
+│   ├── hooks/                 # Custom React hooks
+│   │   └── use-socket.ts      # Socket.io client hook
+│   └── lib/                   # Core functionality
+│       ├── whatsapp.ts        # Puppeteer WhatsApp automation
+│       ├── socket.ts          # Socket.io server setup
+│       └── db.ts              # Prisma database client
+├── public/
+│   ├── manifest.json          # PWA manifest
+│   └── sw.js                  # Service worker
+├── prisma/
+│   └── schema.prisma          # Database schema
+└── session_data/              # Puppeteer user data (gitignored)
 ```
 
-## 🎨 Available Features & Components
+## 🔧 Configuration Options
 
-This scaffold includes a comprehensive set of modern web development tools:
+### Puppeteer Settings
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+- `PUPPETEER_HEADLESS`: Set to `true` for production (no browser window)
+- `PUPPETEER_USER_DATA`: Directory for WhatsApp session persistence
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+### Development vs Production
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+**Development (Recommended for setup):**
+```env
+PUPPETEER_HEADLESS=false
+```
+- Shows browser window for QR scanning
+- Easier debugging and monitoring
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+**Production:**
+```env
+PUPPETEER_HEADLESS=true
+```
+- Runs completely headless
+- Better for server deployment
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
+## 📊 API Endpoints
 
-## 🤝 Get Started with Z.ai
+### GET /api/messages
+Retrieve message history with pagination:
+```bash
+GET /api/messages?limit=50&offset=0
+```
 
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+### GET /api/bot/status
+Check bot initialization status:
+```bash
+GET /api/bot/status
+```
+
+## 🔌 Socket.io Events
+
+### Client → Server
+
+- `send_message`: Send a WhatsApp message
+- `get_screenshot`: Request current view screenshot
+- `get_status`: Check bot status
+
+### Server → Client
+
+- `message_sent`: Message sent successfully
+- `incoming_message`: New message received
+- `screenshot`: Screenshot data
+- `status`: Bot status update
+- `error_*`: Various error events
+
+## 🚨 Troubleshooting
+
+### Bot Not Initializing
+
+1. Check that Chromium launches properly
+2. Verify WhatsApp Web loads in the browser window
+3. Ensure QR code is scanned correctly
+4. Check console logs for error messages
+
+### Connection Issues
+
+1. Verify Socket.io connection in browser console
+2. Check that port 3000 is not blocked
+3. Ensure WebSocket connections are allowed
+
+### WhatsApp Web Issues
+
+1. Clear session data: Delete `session_data` folder
+2. Restart the application
+3. Scan QR code again
+4. Check internet connection
+
+## 📱 Mobile Installation
+
+1. Open the dashboard in mobile browser
+2. Look for "Add to Home Screen" option
+3. Install as PWA for native app experience
+4. Use deep links for WhatsApp integration
+
+## 🔒 Security Considerations
+
+- This tool is for development/prototyping only
+- Never use for production messaging
+- Respect WhatsApp's Terms of Service
+- Keep your session data secure
+- Use in a trusted environment only
+
+## 🚀 Production Deployment
+
+For production use, consider:
+
+1. **Docker Setup**: Run in isolated container
+2. **Reverse Proxy**: Nginx with SSL/TLS
+3. **Process Manager**: PM2 or similar
+4. **Monitoring**: Health checks and logging
+5. **Official API**: Switch to WhatsApp Business API
+
+## 📝 Development Notes
+
+- Session data persists in `session_data/` directory
+- Messages are stored in SQLite database
+- Real-time updates via Socket.io
+- PWA works offline with cached resources
+- Mobile deep links use `whatsapp://` scheme
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is for educational and development purposes. Use responsibly and in accordance with WhatsApp's Terms of Service.
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+**⚠️ Disclaimer**: This tool is provided for educational and development purposes only. Users are responsible for complying with WhatsApp's Terms of Service and applicable laws.

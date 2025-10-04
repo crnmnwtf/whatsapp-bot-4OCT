@@ -1,0 +1,36 @@
+{
+  "name": "WhatsApp Bot Dashboard",
+  "short_name": "WA Bot",
+  "description": "Control and monitor your WhatsApp automation bot",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#22c55e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Send Message",
+      "short_name": "Send",
+      "description": "Quickly send a WhatsApp message",
+      "url": "/?action=send",
+      "icons": [
+        {
+          "src": "/logo.svg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

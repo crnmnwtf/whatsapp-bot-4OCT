@@ -1,5 +1,6 @@
 // server.ts - Next.js Standalone + Socket.IO
 import { setupSocket } from '@/lib/socket';
+import { initBot } from '@/lib/whatsapp';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import next from 'next';
@@ -43,9 +44,29 @@ async function createCustomServer() {
     setupSocket(io);
 
     // Start the server
-    server.listen(currentPort, hostname, () => {
+    server.listen(currentPort, hostname, async () => {
       console.log(`> Ready on http://${hostname}:${currentPort}`);
       console.log(`> Socket.IO server running at ws://${hostname}:${currentPort}/api/socketio`);
+      
+      // Initialize WhatsApp bot
+      try {
+        const headless = process.env.PUPPETEER_HEADLESS === 'true';
+        const userDataDir = process.env.PUPPETEER_USER_DATA || './session_data';
+        
+        console.log('Initializing WhatsApp bot...');
+        await initBot({ 
+          userDataDir, 
+          headless 
+        });
+        console.log('WhatsApp bot initialized successfully');
+        
+        if (!headless) {
+          console.log('Puppeteer running in visible mode - scan QR code if needed');
+        }
+      } catch (error) {
+        console.error('Failed to initialize WhatsApp bot:', error);
+        console.log('You can still use the dashboard, but WhatsApp features will be limited');
+      }
     });
 
   } catch (err) {

@@ -31,7 +31,11 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # vercel
 .vercel
@@ -45,5 +49,9 @@ local-*
 dev.log
 test
 prompt
-
 server.log
+
+# WhatsApp Bot specific
+/session_data/
+/db/data.db
+*.db
